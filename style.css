@@ -21,7 +21,6 @@ ul[role="list"],
 ol[role="list"] {
     list-style: none;
 }
-
 /* Set core root defaults */
 html:focus-within {
     scroll-behavior: smooth;
@@ -70,6 +69,8 @@ svg {
 /* General Style */
 
 /* Main Style */
+body {
+}
 
 main {
     height: 100%;
@@ -80,32 +81,103 @@ main {
 }
 
 .primary-section {
-    background: hsl(40, 84%, 41%);
     height: 60%;
     width: 40%;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* grid-template-rows: 1fr; */
-    /* grid-template-areas: "a b"; */
-
+    background: hsl(0, 0%, 100%);
+    display: flex;
     border-radius: 10px;
 }
 
-.product-img {
-    background-color: blue;
+.primary-section > * {
+    flex-basis: 100%;
 }
-img {
+
+.product-img .product-mobile {
+    display: none;
+}
+
+.product-img img {
     height: 100%;
-    border-radius: 100px;
+    border-radius: 10px 0 0 10px;
 }
 
 .product-desc {
-    background-color: rgb(0, 255, 60);
+    padding: 40px;
+}
+
+.product-desc h5 {
+    color: hsl(228, 12%, 48%);
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 5px;
+}
+
+.product-desc h1 {
+    color: hsl(212, 21%, 14%);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.product-desc p {
+    color: hsl(228, 12%, 48%);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8rem;
 }
 
 .prices {
     display: flex;
+    align-items: center;
+}
+
+.prices .current-price {
+    color: hsl(158, 36%, 37%);
+    font-size: 1.5rem;
+}
+
+.prices .previous-price {
+    text-decoration: line-through;
+}
+
+.product-desc button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-family: "Montserrat", sans-serif;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(158, 36%, 37%);
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.product-desc button:hover {
+    background-color: hsl(156, 42%, 18%);
+}
+
+@media (max-width: 375px) {
+    .primary-section {
+        width: 95%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .primary-section > * {
+        flex: 1;
+    }
+
+    .product-img img {
+        height: 100%;
+        border-radius: 10px 10px 0 0px;
+    }
+
+    .product-img .product-desktop {
+        display: none;
+    }
+
+    .product-img .product-mobile {
+        display: block;
+    }
 }
