@@ -2,6 +2,22 @@
 
 /* // https://piccalil.li/blog/a-modern-css-reset */
 
+:root {
+    --clr-primary-400: hsl(158, 36%, 37%);
+    --clr-primary-700: hsl(158, 36%, 20%);
+    --clr-secondary-200: hsl(30, 38%, 92%);
+
+    --clr-neutral-900: hsl(212, 21%, 14%);
+    --clr-neutral-400: hsl(228, 12%, 48%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+
+    --ff-accent: "Fraunces", serif;
+    --ff-base: "Montserrat", sans-serif;
+
+    --fw-regular: 500;
+    --fw-bold: 700;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -28,13 +44,13 @@ html:focus-within {
 
 html,
 body {
-    height: 100vh;
+    height: 100%;
 }
 
 /* Set core body defaults */
 body {
     text-rendering: optimizeSpeed;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
 /* A elements that don't have a class get default styles */
@@ -68,116 +84,100 @@ svg {
 
 /* General Style */
 
-/* Main Style */
 body {
+    font-family: var(--ff-base);
+    font-weight: var(--fw-regular);
+    font-size: 0.875rem;
+    color: var(--clr-neutral-400);
+    background: var(--clr-secondary-200);
+
+    /* For this project only */
+    display: grid;
+    place-content: center;
+    margin: 1rem;
 }
 
-main {
-    height: 100%;
-    background: hsl(30, 38%, 92%);
+/* Ulitity Class */
+.flex-group {
     display: flex;
-    justify-content: center;
+    gap: 1rem;
     align-items: center;
 }
 
-.primary-section {
-    height: 60%;
-    width: 40%;
-    background: hsl(0, 0%, 100%);
-    display: flex;
-    border-radius: 10px;
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
-.primary-section > * {
-    flex-basis: 100%;
-}
-
-.product-img .product-mobile {
-    display: none;
-}
-
-.product-img img {
-    height: 100%;
-    border-radius: 10px 0 0 10px;
-}
-
-.product-desc {
-    padding: 40px;
-}
-
-.product-desc h5 {
-    color: hsl(228, 12%, 48%);
-    font-family: "Montserrat", sans-serif;
-    letter-spacing: 5px;
-}
-
-.product-desc h1 {
-    color: hsl(212, 21%, 14%);
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-}
-
-.product-desc p {
-    color: hsl(228, 12%, 48%);
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.8rem;
-}
-
-.prices {
-    display: flex;
-    align-items: center;
-}
-
-.prices .current-price {
-    color: hsl(158, 36%, 37%);
-    font-size: 1.5rem;
-}
-
-.prices .previous-price {
-    text-decoration: line-through;
-}
-
-.product-desc button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    font-family: "Montserrat", sans-serif;
-    color: hsl(0, 0%, 100%);
-    background-color: hsl(158, 36%, 37%);
-    width: 100%;
+/* Button */
+.button {
+    cursor: pointer;
+    padding: 0.75em 1.5em;
+    background: var(--clr-primary-400);
     border: 0;
-    border-radius: 10px;
-    padding: 10px 20px;
+    color: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    display: inline-flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--fw-bold);
+    font-size: 0.925rem;
 }
 
-.product-desc button:hover {
-    background-color: hsl(156, 42%, 18%);
+.button[data-icon="shopping-cart"]::before {
+    content: "";
+    width: 15px;
+    height: 16px;
+    background: url("./images/icon-cart.svg");
 }
 
-@media (max-width: 375px) {
-    .primary-section {
-        width: 95%;
-        height: 90%;
-        display: flex;
-        flex-direction: column;
-    }
+.button:hover {
+    background: var(--clr-primary-700);
+}
 
-    .primary-section > * {
-        flex: 1;
-    }
+/* Main Style */
+.product {
+    display: grid;
+    background: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 600px;
+}
 
-    .product-img img {
-        height: 100%;
-        border-radius: 10px 10px 0 0px;
-    }
+.product__content {
+    padding: 1.5rem;
+    display: grid;
+    gap: 1rem;
+}
 
-    .product-img .product-desktop {
-        display: none;
-    }
+.product__category {
+    font-size: 0.8125rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+.product__title {
+    font-size: 2rem;
+    font-family: var(--ff-accent);
+    font-weight: var(--fw-bold);
+    color: var(--clr-neutral-900);
+    line-height: 1;
+}
 
-    .product-img .product-mobile {
-        display: block;
+.product__price {
+    font-size: 2rem;
+    font-family: var(--ff-accent);
+    font-weight: var(--fw-bold);
+    color: var(--clr-primary-400);
+}
+
+@media (min-width: 37.5em) {
+    .product {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
